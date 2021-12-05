@@ -1,21 +1,51 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { View } from "react-native";
+import { MotiView } from "moti";
 
-export default function App() {
+const LoadingIndicator = ({ size }) => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+    <MotiView
+      from={{
+        width: size,
+        height: size,
+        borderRadius: size / 2,
+        borderWidth: 0,
+      }}
+      animate={{
+        width: size + 20,
+        height: size + 20,
+        borderRadius: (size + 20) / 2,
+        borderWidth: size / 10,
+      }}
+      transition={{
+        type: "timing",
+        duration: 1000,
+        loop: true,
+      }}
+      style={{
+        width: size,
+        height: size,
+        borderRadius: size / 2,
+        borderWidth: size / 10,
+        borderColor: "#fff",
+      }}
+    />
+  );
+};
+
+const App = () => {
+  return (
+    <View
+      style={{
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "#010100",
+      }}
+    >
+      <LoadingIndicator size={100} />
     </View>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
